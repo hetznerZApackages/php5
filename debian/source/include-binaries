@@ -1,0 +1,4 @@
+debian/patches/use_updated_install-pear-nozlib.phar.patch
+debian/patches/0048-Revert-PEAR-version-to-last-working-version-from-PHP.patch
+debian/data/bug77988.jpg
+debian/data/bug78069.data
