@@ -60,3 +60,4 @@ CVE-2019-11036.patch
 CVE-2019-11039.patch
 CVE-2019-11040.patch
 0005-Fix-bug-77967-Bypassing-open_basedir-restrictions-vi.patch
+hetz_curl_path_for_stretch.diff

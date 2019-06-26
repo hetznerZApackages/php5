@@ -1,0 +1,93 @@
+We need to provide the changed path for quilt for Debian Jessie
+This was pulled from the php7 package in Stretch
+--- a/configure
++++ b/configure
+@@ -29615,14 +29615,36 @@
+         break
+       fi
+     done
++   #From php7 on Stretch
++    if test -z "$CURL_DIR"; then
++      { $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
++  $as_echo "not found" >&6; }
++      if which dpkg-architecture>/dev/null; then
++        { $as_echo "$as_me:${as_lineno-$LINENO}: checking for cURL in multiarch path" >&5
++  $as_echo_n "checking for cURL in multiarch path... " >&6; }
++        CURL_MULTIARCH_INCLUDE=/usr/include/$(dpkg-architecture -qDEB_HOST_MULTIARCH)
++        if test -r $CURL_MULTIARCH_INCLUDE/curl/easy.h; then
++          CURL_DIR=/usr
++          { $as_echo "$as_me:${as_lineno-$LINENO}: result: found in $CURL_MULTIARCH_INCLUDE" >&5
++  $as_echo "found in $CURL_MULTIARCH_INCLUDE" >&6; }
++        else
++          { $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
++  $as_echo "not found" >&6; }
++        fi
++      fi
++    fi
+   fi
+ 
+   if test -z "$CURL_DIR"; then
+-    { $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+-$as_echo "not found" >&6; }
+-    as_fn_error $? "Please reinstall the libcurl distribution -
+-    easy.h should be in <curl-dir>/include/curl/" "$LINENO" 5
++    as_fn_error please reinstall the libcurl distribution - easy.h should be in <curl-dir>/include/curl/ "Could not find cURL" "$LINENO" 5
+   fi
++  #Old php5 on Jessie error state
++  #if test -z "$CURL_DIR"; then
++  #  { $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
++#$as_echo "not found" >&6; }
++  #  as_fn_error $? "Please reinstall the libcurl distribution -
++  #  easy.h should be in <curl-dir>/include/curl/" "$LINENO" 5
++  #fi
+ 
+   CURL_CONFIG="curl-config"
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for cURL 7.10.5 or greater" >&5
+@@ -29646,6 +29668,7 @@
+     as_fn_error $? "cURL version 7.10.5 or later is required to compile php with cURL support" "$LINENO" 5
+   fi
+ 
++  if test -z "$CURL_MULTIARCH_INCLUDE"; then
+ 
+   if test "$CURL_DIR/include" != "/usr/include"; then
+ 
+@@ -29677,6 +29700,39 @@
+ 
+   fi
+ 
++  else
++
++  if test "$CURL_MULTIARCH_INCLUDE" != "/usr/include"; then
++
++  if test -z "$CURL_MULTIARCH_INCLUDE" || echo "$CURL_MULTIARCH_INCLUDE" | grep '^/' >/dev/null ; then
++    ai_p=$CURL_MULTIARCH_INCLUDE
++  else
++
++    ep_dir=`echo $CURL_MULTIARCH_INCLUDE|$SED 's%/*[^/][^/]*/*$%%'`
++
++    ep_realdir=`(cd "$ep_dir" && pwd)`
++    ai_p="$ep_realdir"/`basename "$CURL_MULTIARCH_INCLUDE"`
++  fi
++
++
++
++  unique=`echo $ai_p|$SED 's/[^a-zA-Z0-9]/_/g'`
++
++  cmd="echo $ac_n \"\$INCLUDEPATH$unique$ac_c\""
++  if test -n "$unique" && test "`eval $cmd`" = "" ; then
++    eval "INCLUDEPATH$unique=set"
++
++      if test ""; then
++        INCLUDES="-I$ai_p $INCLUDES"
++      else
++        INCLUDES="$INCLUDES -I$ai_p"
++      fi
++
++  fi
++
++  fi
++
++  fi
+ 
+   for ac_i in $CURL_LIBS; do
+     case $ac_i in
