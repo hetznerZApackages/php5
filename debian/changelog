@@ -1,8 +1,14 @@
+php5 (5.6.40+dfsg-0+deb8u4+deb9hetz1~exp7) stretch-hetz-experimental; urgency=medium
+
+  * Create patch for curl change in control
+
+ -- Walter Kleynscheldt <walter.kleynscheldt@hetzner.co.za>  Wed, 26 Jun 2019 12:40:57 +0200
+
 php5 (5.6.40+dfsg-0+deb8u4+deb9hetz1~exp6) stretch-hetz-experimental; urgency=medium
 
   * Patch configure to cater for newer libcurl4-openssl-dev pathing
 
- -- Walter Kleynscheldt <walter.kleynscheldt@hetzner.co.za>  Wed, 26 Jun 2019 11:56:38 +0200
+ -- Walter Kleynscheldt <walter.kleynscheldt@hetzner.co.za>  Wed, 26 Jun 2019 12:40:57 +0200
 
 php5 (5.6.40+dfsg-0+deb8u4+deb9hetz1~exp5) stretch-hetz-experimental; urgency=medium
 
