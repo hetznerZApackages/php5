@@ -29607,8 +29607,13 @@ if test "$PHP_CURL" != "no"; then
   else
     { $as_echo "$as_me:${as_lineno-$LINENO}: checking for cURL in default path" >&5
 $as_echo_n "checking for cURL in default path... " >&6; }
-    for i in /usr/local /usr; do
+    for i in /usr/local /usr /usr/include/x86_64-linux-gnu; do
       if test -r $i/include/curl/easy.h; then
+        CURL_DIR=$i
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: found in $i" >&5
+$as_echo "found in $i" >&6; }
+        break
+      elif test -r $i/curl/easy.h; then
         CURL_DIR=$i
         { $as_echo "$as_me:${as_lineno-$LINENO}: result: found in $i" >&5
 $as_echo "found in $i" >&6; }
@@ -29630,10 +29635,10 @@ $as_echo_n "checking for cURL 7.10.5 or greater... " >&6; }
 
   if ${CURL_DIR}/bin/curl-config --libs > /dev/null 2>&1; then
     CURL_CONFIG=${CURL_DIR}/bin/curl-config
-  else
-    if ${CURL_DIR}/curl-config --libs > /dev/null 2>&1; then
+  elif ${CURL_DIR}/curl-config --libs > /dev/null 2>&1; then
       CURL_CONFIG=${CURL_DIR}/curl-config
-    fi
+  elif /usr/bin/curl-config --libs > /dev/null 2>&1; then
+    CURL_CONFIG=/usr/bin/curl-config
   fi
 
   curl_version_full=`$CURL_CONFIG --version`
