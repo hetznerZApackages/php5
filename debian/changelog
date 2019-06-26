@@ -1,8 +1,14 @@
+php5 (5.6.40+dfsg-0+deb8u4+deb9hetz1~exp4) stretch-hetz-experimental; urgency=medium
+
+  * Change libmysqlclient-dev dependency to match what exists in Stretch
+
+ -- Walter Kleynscheldt <walter.kleynscheldt@hetzner.co.za>  Wed, 26 Jun 2019 11:18:33 +0200
+
 php5 (5.6.40+dfsg-0+deb8u4+deb9hetz1~exp3) stretch-hetz-experimental; urgency=medium
 
   * Remove all custom gbp settings
 
- -- Walter Kleynscheldt <walter.kleynscheldt@hetzner.co.za>  Wed, 26 Jun 2019 10:00:14 +0200
+ -- Walter Kleynscheldt <walter.kleynscheldt@hetzner.co.za>  Wed, 26 Jun 2019 11:18:33 +0200
 
 php5 (5.6.40+dfsg-0+deb8u4+deb9hetz1~exp2) stretch-hetz-experimental; urgency=medium
 
