@@ -1,8 +1,14 @@
+php5 (5.6.40+dfsg-0+deb8u4+deb9hetz1~exp2) stretch-hetz-experimental; urgency=medium
+
+  * Set pristine tar to false
+
+ -- Walter Kleynscheldt <walter.kleynscheldt@hetzner.co.za>  Wed, 26 Jun 2019 09:57:20 +0200
+
 php5 (5.6.40+dfsg-0+deb8u4+deb9hetz1~exp1) stretch-hetz-experimental; urgency=medium
 
   * Forward porting to Stretch for ongoing support past Stretch
 
- -- Walter Kleynscheldt <walter.kleynscheldt@hetzner.co.za>  Wed, 26 Jun 2019 09:54:41 +0200
+ -- Walter Kleynscheldt <walter.kleynscheldt@hetzner.co.za>  Wed, 26 Jun 2019 09:57:20 +0200
 
 php5 (5.6.40+dfsg-0+deb8u4) jessie-security; urgency=medium
 
